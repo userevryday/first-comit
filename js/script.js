@@ -18,11 +18,14 @@ document.addEventListener("DOMContentLoaded", () =>{
   const movieDB = {
         
        movies: [
-          "super",
-          "super puper",
+        
+          
+          
+          
           "trololo",
           "durimar ",
           "rinbuldash"
+          
       ]
   };
   const Batn = document.querySelectorAll("li"), 
@@ -35,96 +38,145 @@ document.addEventListener("DOMContentLoaded", () =>{
         poisk=document.querySelector(".header__search form input"),
         addForm = document.querySelector("form.add"),
         addInput=addForm.querySelector(".adding__input"),
-        checkbox = addForm.querySelector('[type="checkbox"]');
+        checkbox = addForm.querySelector('[type="checkbox"]'),
+        ylou = document.querySelector(".header"),
+        ellow = ylou.querySelector(".header__search");
      
-     
+      console.log(Batn);
       console.log(addForm);
       console.log(addInput);
       console.log(checkbox);
       console.log(logo);
       console.log(genr);
-      console.log(Batn);
       console.log(reclama);
       console.log(bigblok);
       console.log(listarci);
       console.log(ara);
           
           
-      addForm.addEventListener('submit',(event)=>{
+     
+     Batn[0].addEventListener(("click"),()=>{
+      Batn[0].classList.toggle('red');
+      if(!Batn[0].classList.contains("red")){
+        Batn.forEach(element => {element.style.background= 'blue';});
+        poisk.style.background="red";
+        genr.textContent="АРЧИ ТЫ ГДЕ !!!!";
+       
+      
+      
+      }
+      else{Batn.forEach(element => {element.style.background= 'red';});
+      poisk.style.background="blue";
+      genr.textContent="Masea kak dela";
+      
+    
+    
+    }
+       });
+       Batn[1].addEventListener(("click"),()=>{
+        Batn[1].classList.toggle('red');
+        if(!Batn[1].classList.contains("red")){
+          bigblok.style.backgroundImage="url('img/111.jpg')";
+        }
+          else{
+
+            bigblok.style.backgroundImage="url('img/bg.jpg')";
+        } });
+        Batn[2].addEventListener(("click"),()=>{
+          Batn[2].classList.toggle('red');
+          if(!Batn[2].classList.contains("red")){
+            genr.style.background="red";}
+            else{genr.style.background="purple"; 
+          }});
+          Batn[4].addEventListener(("click"),()=>{
+            Batn[4].classList.toggle('red');
+            if(!Batn[4].classList.contains("red")){
+              logo.style.backgroundImage="url('img/222.jpg')";
+            }
+              else{
+    
+                logo.style.backgroundImage="url('img/333.webp')"; 
+            } });
+            
+         
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+          addForm.addEventListener('submit',(event)=>{
         event.preventDefault();
         let newFilm = addInput.value;
         const favorite = checkbox.checked;
         if(newFilm){
-          if(newFilm.length >5){
-            newFilm = `${newFilm.substring(0,21)}...`;
-            }
-          
-          
-          
-          
-          movieDB.movies.push(newFilm);
-          sortArr(movieDB.movies);
-          createMoviesList(movieDB.movies,listarci);
-        
-        
-        }
-        
-        
-        
-        event.target.reset();
+          if(newFilm.length >21){
+            newFilm = `${newFilm.substring(0,22)}...`;}
+            movieDB.movies.push(newFilm);
+            sortArr(movieDB.movies);
+            createMoviesList(movieDB.movies,listarci);
+          }
+          event.target.reset();
+        });
       
+    
+      
+       function createMoviesList (films, parent){
+           parent.innerHTML="";
+          films.forEach((item,i) => {parent.innerHTML+=`<li class="promo__interactive-item">${i+1}:${item}
+           <div class="delete"></div>`
+        ;});
+        const jib =  document.querySelectorAll('.delete');
+        jib.forEach((btn,i)=>{
+         btn.addEventListener('click',()=>{
+           btn.parentElement.remove();
+           movieDB.movies.slice(i,1);
+          });
+          
       });
+        
       
-       function createMoviesList (films, parent){   
-               parent.innerHTML="";
-               films.forEach((item,i) => {parent.innerHTML+=`<li class="promo__interactive-item">${i+1}:${item}
-      <div class="delete"></div>`
-      ;});
-     }
-     
-         document.querySelectorAll('.delete').forEach((btn,i)=>{
-           btn.addEventListener('click',()=>{
-             btn.parentElement.remove();
-             movieDB.movies.slice(i,1);
-
-           });
-
-         });
-     
-     
-     const sortArr = (arr) =>{
-         arr.sort();
+      }
+      
+      const sortArr = (arr) =>{
+        arr.sort();
        };     
-       sortArr(movieDB.movies);
+       
+      
+      
+      
+       
 
-
-
+       
+       
+    
+           
+     
+     
+    
        function litelChange (){
-                poisk.style.background="red";
-                genr.style.background="red";
-                genr.textContent="АРЧИ ТЫ ГДЕ !!!!";
                 genr.addEventListener('click',()=>{alert("POLINA");});
                 logo.addEventListener("click",()=>{const akol = prompt("ti 4to durak ?");});
                 poisk.addEventListener("click",()=>{console.log("ti 4toto i6e6");});
-                Batn.forEach(element => {element.style.background= 'blue';});
-              };
+               
+              }
        function DeliteSpam (){
                 reclama.forEach(element=>{element.remove();});
-               };  
+               }  
           
           
             
-        function changeImage (){
-                 const alertar =(e)=>{bigblok.style.backgroundImage="url('img/content_1.jpg')";};
-                 Batn.forEach(bt=> {bt.addEventListener("click",alertar)});
-                 bigblok.style.backgroundImage="url('img/111.jpg')";
-                 logo.style.backgroundImage="URL('img/222.jpg')";
-        };   
-        createMoviesList(movieDB.movies,listarci);  
-          changeImage();
+        
+          createMoviesList(movieDB.movies,listarci);  
           DeliteSpam();
           litelChange();  
-            
+          sortArr(movieDB.movies);
+
             
             
     
@@ -132,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () =>{
            
   
 
-});
+        });
 
 
 
